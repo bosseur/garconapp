@@ -37,6 +37,7 @@ $('.acao-limpar').click(function(){
 	$('.badge').remove();
 });
 
+
 $('.scan-qrcode').click(function(){
 	cordova.plugins.barcodeScanner.scan(
 		function (result){
@@ -50,3 +51,38 @@ $('.scan-qrcode').click(function(){
 	    }
     );
 });
+
+$(".acao-finalizar").click(function(){
+	$.ajax({
+		url:"http://cozinhapp.sergiolopes.org/novo-pedido",
+		data:{
+			mesa:$("#numeroMesa").val(),
+			pedido:$("#resumo").text()
+		},
+		success: function(resposta){
+			Materialize.toast(resposta, 2000);
+			$("#numeroMesa").val("");
+			$(".badge").remove();
+		},
+		error:function(error){
+			 Materialize.toast(error.responseText, 2000);
+		}
+	})
+});
+
+/*
+$('.scan-qrcode').click(function(){
+	navigator.camera.getPicture(onSuccess, onFail, { quality: 25,
+	    destinationType: Camera.DestinationType.DATA_URL
+	});
+
+	function onSuccess(imageData) {
+	    var image = $('#myImage');
+	    image.attr("src", "data:image/jpeg;base64," + imageData);
+	}
+
+	function onFail(message) {
+	    alert('Failed because: ' + message);
+	}
+});
+*/
