@@ -7,7 +7,9 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Ernst
     </author>
-    <access origin="http://cozinhapp.sergiolopes.org" />
+    <access origin="*" />
+    <allow-intent href="*" />
+    <allow-navigation href="*" />
     <preference name="Orientation" value="portrait" />
     <preference name="Fullscreen" value="false" />
     <preference name="DisallowOverscroll" value="true" />
